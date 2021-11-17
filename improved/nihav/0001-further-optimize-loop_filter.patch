@@ -1,0 +1,36 @@
+From b996122e4d09ccf2ddd9ab65d13ba9dc644134b2 Mon Sep 17 00:00:00 2001
+From: Stephan Vedder <stephan.vedder@gmail.com>
+Date: Wed, 17 Nov 2021 22:40:18 +0100
+Subject: [PATCH] further optimize loop_filter
+
+---
+ nihav-duck/src/codecs/vpcommon.rs | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/nihav-duck/src/codecs/vpcommon.rs b/nihav-duck/src/codecs/vpcommon.rs
+index 6163650..22d2044 100644
+--- a/nihav-duck/src/codecs/vpcommon.rs
++++ b/nihav-duck/src/codecs/vpcommon.rs
+@@ -364,6 +364,8 @@ pub fn vp31_loop_filter(data: &mut [u8], mut off: usize, step: usize, stride: us
+     assert!(off >= step * 2);
+ 
+     for _ in 0..len {
++        assert!(off + step < data.len());
++        
+         let a = i16::from(data[off - step * 2]);
+         let b = i16::from(data[off - step]);
+         let c = i16::from(data[off]);
+@@ -379,8 +381,8 @@ pub fn vp31_loop_filter(data: &mut [u8], mut off: usize, step: usize, stride: us
+             }
+         }
+         if diff != 0 {
+-            data[off - step] = (b + diff).max(0).min(255) as u8;
+-            data[off]        = (c - diff).max(0).min(255) as u8;
++            data[off - step] = (b + diff) as u8;
++            data[off]        = (c - diff) as u8;
+         }
+ 
+         off += stride;
+-- 
+2.25.1
+

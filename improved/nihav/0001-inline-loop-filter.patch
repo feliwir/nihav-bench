@@ -1,0 +1,32 @@
+From b04c89292a20d8408bc0c5c880bdf8a4b6f718f9 Mon Sep 17 00:00:00 2001
+From: Stephan Vedder <stephan.vedder@gmail.com>
+Date: Wed, 17 Nov 2021 22:09:10 +0100
+Subject: [PATCH] inline loop filter
+
+---
+ nihav-duck/src/codecs/vpcommon.rs | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/nihav-duck/src/codecs/vpcommon.rs b/nihav-duck/src/codecs/vpcommon.rs
+index 541d6e3..6163650 100644
+--- a/nihav-duck/src/codecs/vpcommon.rs
++++ b/nihav-duck/src/codecs/vpcommon.rs
+@@ -354,8 +354,15 @@ pub fn vp_add_block_dc(coeffs: &mut [i16; 64], bx: usize, by: usize, plane: usiz
+     }
+ }
+ 
++#[inline]
+ pub fn vp31_loop_filter(data: &mut [u8], mut off: usize, step: usize, stride: usize,
+                         len: usize, loop_str: i16) {
++    
++    assert!(len>=8);
++    assert!(step>=1);
++    assert!(stride>=1);
++    assert!(off >= step * 2);
++
+     for _ in 0..len {
+         let a = i16::from(data[off - step * 2]);
+         let b = i16::from(data[off - step]);
+-- 
+2.25.1
+

@@ -1,0 +1,5 @@
+/nihav/
+*.vp6
+*.svg
+nihav-encoder-*
+*.data*
