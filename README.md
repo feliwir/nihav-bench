@@ -11,10 +11,10 @@ Time to encode a 720p 1:00 video (Sintel 1:30-2:30) on a AMD Ryzen 5 3500U (comp
 | --------- | --------- |
 | 3m10,095s | 2m26,709s |
 
-## Improvements
-- Use `chunks_exact_mut` over `chunks_mut`
-- generic templated functions
-- assert!() when applicable
+## Findings
+- Use `chunks_exact_mut` over `chunks_mut` for better optimization
+- generic templated functions to make constant parameters be compiled into the binary properly.
+- assert!() when applicable to remove bounds checks & tell the compiler about assumptions he can make
 
 ## Already improved functions
 - mc_bilinear
