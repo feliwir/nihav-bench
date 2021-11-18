@@ -5,8 +5,13 @@ Since the encoding speed has room for improvement i did some optimizations that 
 
 ## Current state
 
-Time to encode a 720p 1:00 video (Sintel 1:30-2:30) on a AMD Ryzen 5 3500U
+Time to encode a 720p 1:00 video (Sintel 1:30-2:30) on a AMD Ryzen 5 3500U (compiled with SSE4.2 & AVX)
 
 | Before    | After     |
 | --------- | --------- |
 | 3m10,095s | 2m26,709s |
+
+## Improvements
+- Use `chunks_exact_mut` over `chunks_mut`
+- generic templated functions
+- assert!() when applicable
