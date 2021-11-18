@@ -15,3 +15,10 @@ Time to encode a 720p 1:00 video (Sintel 1:30-2:30) on a AMD Ryzen 5 3500U (comp
 - Use `chunks_exact_mut` over `chunks_mut`
 - generic templated functions
 - assert!() when applicable
+
+## Already improved functions
+- mc_bilinear
+- vp_fdct & vp_idct
+
+## Needs to be done
+- vp31_loop_filter
