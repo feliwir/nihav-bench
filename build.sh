@@ -6,7 +6,7 @@ git clone git://git.nihav.org/nihav.git nihav
 git clone git://git.nihav.org/nihav-encoder.git  nihav/nihav-encoder
 
 rm -rf $SCRIPT_DIR/nihav-fb
-git clone git@github.com:feliwir/nihav-fb.git nihav-fb
+git clone git@github.com:rust-av/vp6-common.git nihav-fb
 git clone git://git.nihav.org/nihav-encoder.git  nihav-fb/nihav-encoder
 
 # Apply regular patches required for proper EA VP6 workflow

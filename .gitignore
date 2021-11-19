@@ -1,5 +1,7 @@
 /nihav/
-*.vp6
+/nihav-fb/
+output_*.avi
 *.svg
 nihav-encoder-*
 *.data*
+null
